@@ -16,13 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tapple.JuegoTapple.entity.Plato;
+import com.tapple.JuegoTapple.repository.PlatoRepository;
 import com.tapple.JuegoTapple.service.PlatoService;
 
 //Indicamos que es un controlador rest
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.PUT,RequestMethod.POST}) //para usar la api desde otra dirección
 @RequestMapping("/api")//esta sera la raiz de la url, es decir http://127.0.0.1:8080/api/
-
 public class PlatoRestController {
 	
 	//Inyectamos el servicio para poder hacer uso de el
@@ -39,7 +38,7 @@ public class PlatoRestController {
     }
     
     /*Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url + el id de un plato
-    http://127.0.0.1:8080/api/users/1*/
+    http://127.0.0.1:8080/api/platos/1*/
     @GetMapping("/platos/{platoId}")
     public Plato getPlato(@PathVariable int platoId){
         Plato plato = platoService.findById(platoId);
@@ -67,7 +66,7 @@ public class PlatoRestController {
     /*Este método se hará cuando por una petición PUT (como indica la anotación) se llame a la url
     http://127.0.0.1:8080/api/platos/  */
     @PutMapping("/platos")
-    public Plato updateUser(@RequestBody Plato plato) {
+    public Plato updatePlato(@RequestBody Plato plato) {
 
         platoService.save(plato);
 
